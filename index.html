@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Íntimo Coffee — cafetería de especialidad. Origen, ritual y encuentro." />
-  <title>Íntimo Coffee | Cafetería de especialidad</title>
+  <meta name="description" content="Íntimo Coffee — café de especialidad, tostado con intención. Ritual, origen y experiencia taza a taza." />
+  <title>Íntimo Coffee | Donde el café se vuelve ritual</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
@@ -15,148 +15,230 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <a href="#" class="logo" aria-label="Íntimo Coffee inicio">
+      <a href="#inicio" class="logo" aria-label="Íntimo Coffee inicio">
         <span class="logo-mark">Í</span>
         <span class="logo-text">Íntimo<span>Coffee</span></span>
       </a>
       <nav class="nav" aria-label="Principal">
-        <a href="#experiencia">Experiencia</a>
-        <a href="#origen">Origen</a>
+        <a href="#sobre-nosotros">Nosotros</a>
+        <a href="#nuestro-cafe">Nuestro café</a>
         <a href="#menu">Menú</a>
-        <a href="#visitanos">Visítanos</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#experiencias">Experiencias</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#contacto">Contacto</a>
       </nav>
-      <a class="btn btn--outline header-cta" href="#visitanos">Encuéntranos</a>
+      <a class="btn btn--outline header-cta" href="#ubicacion">Visítanos</a>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Abrir menú">
         <span></span><span></span><span></span>
       </button>
     </div>
     <div id="nav-mobile" class="nav-mobile" hidden>
-      <a href="#experiencia">Experiencia</a>
-      <a href="#origen">Origen</a>
+      <a href="#sobre-nosotros">Nosotros</a>
+      <a href="#nuestro-cafe">Nuestro café</a>
       <a href="#menu">Menú</a>
-      <a href="#visitanos">Visítanos</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#experiencias">Experiencias</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto">Contacto</a>
     </div>
   </header>
 
   <main id="contenido">
-    <section class="hero">
+    <!-- HOME Hero -->
+    <section id="inicio" class="hero">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-inner">
-        <p class="eyebrow">Cafetería de especialidad</p>
-        <h1>Un ritual que <em>te acerca</em></h1>
+        <p class="eyebrow">Íntimo Coffee</p>
+        <h1>Donde el café deja de ser rutina y se vuelve ritual.</h1>
         <p class="hero-lead">
-          Granos seleccionados, extracciones cuidadas y un espacio pensado para quedarte.
-          Bienvenido a Íntimo Coffee.
+          Café de especialidad, tostado con intención, servido con calma.<br />
+          Un espacio íntimo para reconectar contigo… taza a taza.
         </p>
         <div class="hero-actions">
-          <a class="btn btn--primary" href="#menu">Explorar menú</a>
-          <a class="btn btn--ghost" href="#origen">Nuestra historia</a>
+          <a class="btn btn--primary" href="#menu">Ver menú</a>
+          <a class="btn btn--ghost" href="#ubicacion">Visítanos</a>
         </div>
       </div>
     </section>
 
-    <section id="experiencia" class="section section--dark">
+    <!-- Sobre nosotros -->
+    <section id="sobre-nosotros" class="section section--cream">
       <div class="container narrow">
-        <h2 class="section-title">La experiencia Íntimo</h2>
-        <p class="section-intro">
-          Inspirados en la claridad de las mejores cadenas del mundo, con el alma de un bar de barrio:
-          luz cálida, aroma a café recién molido y un equipo que conoce tu nombre.
+        <h2 class="section-title">Sobre nosotros</h2>
+        <p class="lead-strong">Creemos que una buena taza de café puede cambiar tu día.</p>
+        <p>
+          Somos una cafetería de especialidad enfocada en ofrecer granos mexicanos de alta calidad, cuidadosamente seleccionados y evaluados por su perfil sensorial. Cada taza que servimos cumple estándares internacionales, garantizando pureza, aroma y sabor excepcionales.
         </p>
+        <p>
+          Trabajamos directamente con productores y tostadores que entienden el café como arte, no como producto.
+        </p>
+        <p class="closing-line">Aquí no vienes solo a tomar café… vienes a vivirlo.</p>
+      </div>
+    </section>
+
+    <!-- Nuestro café -->
+    <section id="nuestro-cafe" class="section section--dark">
+      <div class="container narrow">
+        <h2 class="section-title">Nuestro café</h2>
+        <p class="section-intro section-intro--tight">Origen. Proceso. Precisión.</p>
       </div>
       <div class="container">
-        <ul class="feature-grid">
+        <ul class="icon-list">
+          <li><span class="icon-list__mark" aria-hidden="true">☕</span> Granos de especialidad (+80 puntos)</li>
+          <li><span class="icon-list__mark" aria-hidden="true">◇</span> Origen mexicano (altura, finca, trazabilidad)</li>
+          <li><span class="icon-list__mark" aria-hidden="true">◇</span> Tuestes artesanales</li>
+          <li><span class="icon-list__mark" aria-hidden="true">◇</span> Métodos de extracción: V60, Chemex, Espresso, Prensa Francesa</li>
+        </ul>
+        <p class="section-outro">
+          Cada método resalta notas distintas: frutales, chocolate, nuez o caramelo… tú eliges tu experiencia.
+        </p>
+      </div>
+    </section>
+
+    <!-- Menú destacado -->
+    <section id="menu" class="section">
+      <div class="container">
+        <h2 class="section-title center">Menú destacado</h2>
+        <div class="menu-columns menu-columns--three">
+          <div class="menu-block">
+            <h3>Bebidas</h3>
+            <ul>
+              <li>Espresso</li>
+              <li>Flat White</li>
+              <li>Latte artesanal</li>
+              <li>Cold Brew</li>
+              <li>Bebidas de autor</li>
+            </ul>
+          </div>
+          <div class="menu-block">
+            <h3>Comida</h3>
+            <ul>
+              <li>Croissants y pan artesanal</li>
+              <li>Bagels</li>
+              <li>Postres caseros (brownies, tartas)</li>
+            </ul>
+          </div>
+          <div class="menu-block">
+            <h3>Specials</h3>
+            <ul>
+              <li>Bebidas de temporada inspiradas en ingredientes locales.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section id="experiencia" class="section section--cream">
+      <div class="container narrow">
+        <h2 class="section-title">Experiencia</h2>
+        <p class="section-intro section-intro--tight">Más que café, un espacio.</p>
+        <ul class="check-list">
+          <li>Ambiente cálido y minimalista</li>
+          <li>Música suave</li>
+          <li>Ideal para trabajar, leer o platicar</li>
+          <li>Atención personalizada</li>
+        </ul>
+        <p class="closing-line">Queremos que te sientas como en casa… pero con mejor café.</p>
+      </div>
+    </section>
+
+    <!-- Experiencias (pro) -->
+    <section id="experiencias" class="section section--dark">
+      <div class="container narrow">
+        <h2 class="section-title">Experiencias</h2>
+        <p class="section-intro section-intro--tight">Aprende a distinguir notas, aromas y procesos como un barista.</p>
+      </div>
+      <div class="container">
+        <ul class="feature-grid feature-grid--two">
           <li class="feature-card">
-            <span class="feature-icon" aria-hidden="true">◆</span>
-            <h3>Barra de especialidad</h3>
-            <p>Espresso, filtrados y bebidas signature con recetas propias y estación de temporada.</p>
+            <h3>Catas de café</h3>
+            <p>Recorridos sensoriales guiados por nuestro equipo.</p>
           </li>
           <li class="feature-card">
-            <span class="feature-icon" aria-hidden="true">◇</span>
-            <h3>Comida honesta</h3>
-            <p>Salados, postres y opciones para compartir — ingredientes que se notan en el primer bocado.</p>
+            <h3>Talleres de métodos de extracción</h3>
+            <p>V60, Chemex, espresso y más — manos a la obra.</p>
           </li>
           <li class="feature-card">
-            <span class="feature-icon" aria-hidden="true">○</span>
-            <h3>Tu mesa, tu ritmo</h3>
-            <p>Desayunos, reuniones o una pausa con libro. Wi‑Fi estable y enchufes donde los necesitas.</p>
+            <h3>Maridajes café + postres</h3>
+            <p>Combinaciones pensadas para potenciar sabores.</p>
+          </li>
+          <li class="feature-card">
+            <h3>Experiencias sensoriales</h3>
+            <p>Profundiza en origen, proceso y taza.</p>
           </li>
         </ul>
       </div>
     </section>
 
-    <section id="origen" class="section section--cream">
-      <div class="container split">
-        <div class="split-text">
-          <h2 class="section-title">Origen y oficio</h2>
-          <p>
-            Trabajamos con tostadores y productores que comparten nuestra obsesión por el detalle:
-            desde la cadena de frío hasta la taza, cada paso suma sabor y transparencia.
-          </p>
-          <p>
-            Creemos en el café como vínculo — el mismo que inspira conversaciones largas,
-            proyectos nuevos y esos “nos vemos mañana” que empiezan aquí.
-          </p>
-        </div>
-        <div class="split-visual" role="img" aria-label="Textura abstracta en tonos gris y negro"></div>
-      </div>
-    </section>
-
-    <section id="menu" class="section">
+    <!-- Ubicación -->
+    <section id="ubicacion" class="section section--cream">
       <div class="container">
-        <h2 class="section-title center">Menú destacado</h2>
-        <p class="section-intro center">Lo esencial de nuestra carta — siempre con opciones de temporada.</p>
-        <div class="menu-columns">
-          <div class="menu-block">
-            <h3>Bebidas</h3>
-            <ul>
-              <li>Espresso &amp; clásicos leche</li>
-              <li>Cold brew &amp; bebidas frías</li>
-              <li>Tisanas y tés</li>
-              <li>Extras y personalización</li>
-            </ul>
+        <h2 class="section-title center">Ubicación</h2>
+        <p class="section-intro center">Encuéntranos y haz una pausa en tu día.</p>
+        <div class="visit visit--single">
+          <div>
+            <dl class="visit-dl">
+              <dt>Dirección</dt>
+              <dd>Calle Ejemplo 123, Col. Centro<br />Ciudad</dd>
+              <dt>Horarios</dt>
+              <dd>Lun — Vie · 7:00 — 21:00<br />Sáb — Dom · 8:00 — 22:00</dd>
+            </dl>
           </div>
-          <div class="menu-block">
-            <h3>Comer</h3>
-            <ul>
-              <li>Desayunos y panes</li>
-              <li>Salados y ensaladas</li>
-              <li>Postres de la casa</li>
-              <li>Opciones vegetarianas</li>
-            </ul>
+          <div class="map-embed" aria-label="Mapa (sustituye por embed de Google Maps)">
+            <p class="map-embed__hint">
+              Reemplaza este bloque con el iframe de <strong>Google Maps</strong> (Incrustar mapa) desde tu ubicación real.
+            </p>
+            <!-- Ejemplo (comenta y pega tu iframe):
+            <iframe src="https://www.google.com/maps/embed?pb=..." loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Íntimo Coffee"></iframe>
+            -->
           </div>
         </div>
-        <p class="menu-note">Pregunta en barra por el <strong>origen del grano del día</strong> y nuestras sugerencias de maridaje.</p>
       </div>
     </section>
 
-    <section class="section section--band">
+    <!-- Contacto -->
+    <section id="contacto" class="section">
+      <div class="container">
+        <h2 class="section-title center">Contacto</h2>
+        <div class="contact-grid">
+          <a class="contact-card" href="https://wa.me/525555555555" rel="noopener noreferrer" target="_blank">
+            <span class="contact-card__label">WhatsApp</span>
+            <span class="contact-card__value">+52 55 5555 5555</span>
+          </a>
+          <a class="contact-card" href="https://instagram.com/" rel="noopener noreferrer" target="_blank">
+            <span class="contact-card__label">Instagram</span>
+            <span class="contact-card__value">@intimocoffee</span>
+          </a>
+          <a class="contact-card" href="tel:+525555555555">
+            <span class="contact-card__label">Teléfono</span>
+            <span class="contact-card__value">+52 55 5555 5555</span>
+          </a>
+        </div>
+        <p class="contact-mail">
+          <a href="mailto:hola@intimocoffee.com">hola@intimocoffee.com</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section section--band" aria-labelledby="cta-final">
       <div class="container band-inner">
-        <blockquote>
-          “Un buen café no apura: invita a quedarse un poco más.”
-        </blockquote>
-        <cite>— Equipo Íntimo Coffee</cite>
+        <h2 id="cta-final" class="visually-hidden">Llamada a la acción</h2>
+        <p class="band-cta">Ven por tu próxima taza favorita.</p>
+        <a class="btn btn--outline band-cta-btn" href="#menu">Ver menú</a>
       </div>
     </section>
 
-    <section id="visitanos" class="section section--cream">
-      <div class="container visit">
-        <div>
-          <h2 class="section-title">Visítanos</h2>
-          <p class="visit-lead">Horario y ubicación de ejemplo — sustituye por tus datos reales.</p>
-          <dl class="visit-dl">
-            <dt>Dirección</dt>
-            <dd>Calle Ejemplo 123, Col. Centro<br />Ciudad</dd>
-            <dt>Horario</dt>
-            <dd>Lun — Vie · 7:00 — 21:00<br />Sáb — Dom · 8:00 — 22:00</dd>
-            <dt>Reservas / pedidos</dt>
-            <dd><a href="tel:+525555555555">+52 55 5555 5555</a></dd>
-          </dl>
-        </div>
-        <div class="visit-card">
-          <p class="visit-card-title">¿Grupos o eventos?</p>
-          <p>Escríbenos para coffee breaks, talleres de cata o desayunos de equipo.</p>
-          <a class="btn btn--primary" href="mailto:hola@intimocoffee.com">hola@intimocoffee.com</a>
-        </div>
+    <!-- Frases de marca -->
+    <section class="section section--quotes" aria-label="Frases de marca">
+      <div class="container">
+        <ul class="quotes-grid">
+          <li class="quote-card">“No vendemos café, creamos momentos.”</li>
+          <li class="quote-card">“Cada taza cuenta una historia.”</li>
+          <li class="quote-card">“El café sabe mejor cuando se toma sin prisa.”</li>
+        </ul>
       </div>
     </section>
   </main>
@@ -169,8 +251,8 @@
       </div>
       <p class="footer-copy">© <span id="year"></span> Íntimo Coffee. Sitio informativo estático.</p>
       <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
+        <a href="https://instagram.com/" rel="noopener noreferrer" target="_blank">Instagram</a>
+        <a href="https://wa.me/525555555555" rel="noopener noreferrer" target="_blank">WhatsApp</a>
       </div>
     </div>
   </footer>
