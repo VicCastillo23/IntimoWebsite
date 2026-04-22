@@ -25,6 +25,7 @@
         <a href="#menu">Menú</a>
         <a href="#experiencia">Experiencia</a>
         <a href="#experiencias">Experiencias</a>
+        <a href="#galeria">Galería</a>
         <a href="#ubicacion">Ubicación</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -39,6 +40,7 @@
       <a href="#menu">Menú</a>
       <a href="#experiencia">Experiencia</a>
       <a href="#experiencias">Experiencias</a>
+      <a href="#galeria">Galería</a>
       <a href="#ubicacion">Ubicación</a>
       <a href="#contacto">Contacto</a>
     </div>
@@ -58,6 +60,69 @@
         <div class="hero-actions">
           <a class="btn btn--primary" href="#menu">Ver menú</a>
           <a class="btn btn--ghost" href="#ubicacion">Visítanos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="section section--gallery" aria-labelledby="galeria-titulo">
+      <div class="container">
+        <h2 id="galeria-titulo" class="section-title center">Galería</h2>
+        <p class="section-intro center section-intro--carousel">Un vistazo al ritual en la taza, la mesa y el taller.</p>
+        <div
+          class="photo-carousel"
+          data-carousel
+          role="region"
+          aria-roledescription="carrusel"
+          aria-label="Fotografías de Íntimo Coffee"
+          tabindex="0"
+        >
+          <div class="photo-carousel__chrome">
+            <button type="button" class="photo-carousel__btn photo-carousel__btn--prev" data-carousel-prev aria-controls="carousel-track" aria-label="Foto anterior">
+              <span aria-hidden="true">‹</span>
+            </button>
+            <div class="photo-carousel__viewport" data-carousel-viewport>
+              <div id="carousel-track" class="photo-carousel__track" data-carousel-track>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="false">
+                  <img src="images/carousel/slide-01.png" alt="Café helado en capas en vaso de cristal, fondo oscuro." width="900" height="1200" decoding="async" fetchpriority="high" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-02.png" alt="Latte oscuro en taza negra mate con arte latte, luz dramática." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-03.png" alt="Café de especialidad servido desde jarra cerámica amarilla a taza rosa sobre bandeja Íntimo." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-04.png" alt="Latte con arte en vaso de doble pared, bandeja negra con logo y vaso de agua." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-05.png" alt="Barista preparando pour-over con goteador verde y jarra amarilla sobre báscula." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-06.png" alt="Waffles con higos, fresas, miel y flores comestibles en plato artesanal." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-07.png" alt="Bebida de autor en vaso facetado con rodaja de naranja deshidratada." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-08.png" alt="Servicio de té en tetera de cristal con base de madera y vela, vaso de doble pared sobre bandeja Íntimo." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-09.png" alt="Huevos estrellados sobre tostadas artesanales con verduras y guarnición en plato blanco." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-10.png" alt="Sándwich club tostado con papas a la francesa en plato blanco." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="photo-carousel__slide" data-carousel-slide aria-hidden="true">
+                  <img src="images/carousel/slide-11.png" alt="Granos de café recién tostados en tambor de tostadora profesional." width="900" height="1200" loading="lazy" decoding="async" />
+                </figure>
+              </div>
+            </div>
+            <button type="button" class="photo-carousel__btn photo-carousel__btn--next" data-carousel-next aria-controls="carousel-track" aria-label="Foto siguiente">
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
+          <p class="photo-carousel__status" data-carousel-status aria-live="polite">Foto 1 de 11</p>
         </div>
       </div>
     </section>
