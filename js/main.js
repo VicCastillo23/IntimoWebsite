@@ -25,33 +25,33 @@
   var shell = dialog && dialog.querySelector(".gallery-dialog__shell");
   var dialogImg = dialog && dialog.querySelector(".gallery-dialog__img");
   var closeBtn = dialog && dialog.querySelector(".gallery-dialog__close");
-  if (!dialog || !shell || !dialogImg || !closeBtn) return;
+  if (dialog && shell && dialogImg && closeBtn) {
+    function openGallery(img) {
+      dialogImg.src = img.currentSrc || img.src;
+      dialogImg.alt = img.alt || "";
+      dialog.showModal();
+    }
 
-  function openGallery(img) {
-    dialogImg.src = img.currentSrc || img.src;
-    dialogImg.alt = img.alt || "";
-    dialog.showModal();
-  }
+    function closeGallery() {
+      dialog.close();
+    }
 
-  function closeGallery() {
-    dialog.close();
-  }
-
-  document.querySelectorAll("[data-gallery-open]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var img = btn.querySelector("img");
-      if (img) openGallery(img);
+    document.querySelectorAll("[data-gallery-open]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var img = btn.querySelector("img");
+        if (img) openGallery(img);
+      });
     });
-  });
 
-  closeBtn.addEventListener("click", closeGallery);
+    closeBtn.addEventListener("click", closeGallery);
 
-  shell.addEventListener("click", function (e) {
-    if (e.target === shell) closeGallery();
-  });
+    shell.addEventListener("click", function (e) {
+      if (e.target === shell) closeGallery();
+    });
 
-  dialog.addEventListener("close", function () {
-    dialogImg.removeAttribute("src");
-    dialogImg.alt = "";
-  });
+    dialog.addEventListener("close", function () {
+      dialogImg.removeAttribute("src");
+      dialogImg.alt = "";
+    });
+  }
 })();

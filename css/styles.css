@@ -1170,3 +1170,136 @@ a:hover {
   color: rgba(255, 255, 255, 0.45);
   max-width: 40rem;
 }
+
+/* Páginas legales (privacidad, términos) */
+.legal-page {
+  padding: clamp(2rem, 5vw, 3rem) 0 clamp(4rem, 10vw, 5rem);
+  background: var(--gray-100);
+  min-height: 50vh;
+}
+
+.legal-page .container.narrow {
+  max-width: 760px;
+}
+
+.legal-hero {
+  margin-bottom: 2rem;
+}
+
+.legal-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+  color: var(--black);
+}
+
+.legal-meta {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.legal-alert {
+  background: #fff8e6;
+  border: 1px solid #e6d08a;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.15rem;
+  margin-bottom: 2rem;
+  font-size: 0.92rem;
+  color: var(--gray-900);
+  line-height: 1.5;
+}
+
+.legal-prose {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow);
+}
+
+.legal-prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin: 2rem 0 0.75rem;
+  color: var(--black);
+}
+
+.legal-prose h2:first-child {
+  margin-top: 0;
+}
+
+.legal-prose h3 {
+  font-size: 1.05rem;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--gray-800);
+}
+
+.legal-prose p,
+.legal-prose li {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin: 0 0 0.85rem;
+}
+
+.legal-prose ul {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.legal-prose a {
+  font-weight: 600;
+}
+
+.legal-placeholder {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(234, 88, 12, 0.12);
+  color: #9a3412;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.data-systems-table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+}
+
+.data-systems-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  min-width: 520px;
+}
+
+.data-systems-table th,
+.data-systems-table td {
+  padding: 0.75rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.data-systems-table th {
+  background: var(--gray-100);
+  font-weight: 700;
+  color: var(--gray-900);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.data-systems-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-systems-table td:first-child {
+  font-weight: 600;
+  color: var(--gray-900);
+  white-space: nowrap;
+}
