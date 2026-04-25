@@ -28,29 +28,22 @@ La raíz del sitio para Nginx será:
 
 ## 2. Nginx (misma máquina que facturación / API)
 
-Añade un `server` para `cafeintimo.mx` y `www.cafeintimo.mx` (ajusta rutas de certificado tras `certbot`):
+En el servidor ya puedes usar el archivo versionado **`deploy/nginx-cafeintimo-mx-www.conf`** (puerto 80, `root /opt/intimo/IntimoWebsite`). La directiva `try_files … /index.html` hace que la raíz `/` abra el landing.
 
-```nginx
-server {
-    listen 443 ssl http2;
-    server_name cafeintimo.mx www.cafeintimo.mx;
-    root /opt/intimo/IntimoWebsite;
-    index index.html;
-
-    ssl_certificate     /etc/letsencrypt/live/cafeintimo.mx/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/cafeintimo.mx/privkey.pem;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-```
-
-TLS (ejemplo):
+Copia el contenido de **`deploy/nginx-cafeintimo-mx-www.conf`** (en este repo) a `/etc/nginx/sites-available/cafeintimo-mx-www.conf`, luego:
 
 ```bash
-sudo certbot certonly --nginx -d cafeintimo.mx -d www.cafeintimo.mx
+sudo ln -sf /etc/nginx/sites-available/cafeintimo-mx-www.conf /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
 ```
+
+**HTTPS:** cuando en IONOS (o tu DNS) los registros **A** de `cafeintimo.mx` y `www` apunten a la IP de esta EC2:
+
+```bash
+sudo certbot --nginx -d cafeintimo.mx -d www.cafeintimo.mx
+```
+
+Certbot modificará Nginx y creará `/etc/letsencrypt/live/cafeintimo.mx/` (o similar).
 
 Luego:
 
