@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Trabaja con nosotros — Íntimo Coffee." />
+  <title>Trabaja con nosotros | Íntimo Coffee</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#contenido-legal">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Íntimo Coffee — inicio">
+        <img class="logo-img" src="images/logo-intimo.png" alt="" width="768" height="768" decoding="async" />
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="mapa-sitio.html">Mapa del sitio</a>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="terminos-sitio.html">Términos</a>
+      </nav>
+      <a class="btn btn--outline header-cta" href="index.html#contacto">Contacto</a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="nav-mobile" class="nav-mobile" hidden>
+      <a href="index.html#inicio">Inicio</a>
+      <a href="mapa-sitio.html">Mapa del sitio</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="terminos-sitio.html">Términos</a>
+    </div>
+  </header>
+
+  <main id="contenido-legal" class="legal-page">
+    <div class="container narrow">
+      <header class="legal-hero">
+        <h1>Trabaja con nosotros</h1>
+        <p class="legal-meta">Envía tu CV o carta de presentación por correo.</p>
+      </header>
+
+      <article class="legal-prose">
+        <p>
+          Buscamos personas que amen el café, el servicio y el detalle. Si quieres colaborar en barra, sala o cocina, escríbenos con el asunto indicado y adjunta tu CV en PDF.
+        </p>
+        <p>
+          <a class="btn btn--primary" data-intimo-mailto-job href="#" style="display: inline-block; margin-top: 0.5rem;">Enviar correo</a>
+        </p>
+        <p>
+          <a href="index.html#sobre-nosotros">Conoce nuestra historia</a> ·
+          <a href="privacidad.html">Aviso de privacidad</a> (tratamiento de datos en reclutamiento).
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-extended">
+      <nav class="footer-legal" aria-label="Enlaces legales">
+        <ul class="footer-legal-list">
+          <li><a href="index.html">Sitio principal</a></li>
+          <li class="footer-legal-sep" aria-hidden="true">|</li>
+          <li><a href="mapa-sitio.html">Mapa del sitio</a></li>
+          <li class="footer-legal-sep" aria-hidden="true">|</li>
+          <li><a href="privacidad.html">Aviso de privacidad</a></li>
+        </ul>
+      </nav>
+      <p class="footer-copyright">© <span id="year"></span> Íntimo Coffee. Reservados todos los derechos.</p>
+    </div>
+  </footer>
+
+  <script src="js/site-config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
