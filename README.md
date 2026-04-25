@@ -21,7 +21,7 @@ En `index.html`, el pie enlaza a privacidad, t√©rminos y al portal de facturaci√
 
 ## Publicar en AWS
 
-Ver **`deploy/README-AWS.md`** (Nginx en EC2 o S3 + CloudFront).
+Ver **`deploy/README-AWS.md`** (Nginx en EC2 bajo `/opt/intimo/IntimoWebsite`, o S3 + CloudFront).
 
 ## Personalizar
 

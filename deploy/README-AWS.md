@@ -1,29 +1,40 @@
-# Publicar el sitio estático en AWS
+# Publicar el sitio estático en AWS (EC2 + `/opt`)
 
 El proyecto es **100 % estático** (HTML, CSS, JS, imágenes). No requiere Node en producción.
 
-## Opción A — Misma EC2 que ya usas (Nginx)
+Convención alineada al resto de servicios Íntimo: código bajo **`/opt/intimo/`** (misma idea que `IntimoInvoicing`, `IntimoAccounting`, etc.).
 
-1. En el servidor, crea carpeta pública, por ejemplo:
-   ```bash
-   sudo mkdir -p /var/www/cafeintimo-site
-   sudo chown -R ubuntu:ubuntu /var/www/cafeintimo-site
-   ```
-2. Sube el contenido del repo (sin `.git` si quieres):
-   ```bash
-   rsync -avz --delete ./IntimoCafeSite/ ubuntu@TU_IP:/var/www/cafeintimo-site/
-   ```
-3. Añade un `server` en Nginx para tu dominio (ej. `cafeintimo.mx` o `www.cafeintimo.mx`) con `root /var/www/cafeintimo-site;` y `try_files $uri $uri/ /index.html;` solo si en el futuro usas SPA; para este sitio basta `try_files $uri $uri/ =404;` en rutas concretas o deja el comportamiento por defecto para `.html`.
-4. Certificado TLS con Certbot (Let’s Encrypt) igual que en `facturacion.cafeintimo.mx`.
-5. Comprueba: `curl -sI https://cafeintimo.mx/privacidad.html` → `200`.
+## 1. Clonar o actualizar en el servidor
 
-Ejemplo mínimo de bloque `server` (ajusta dominio y rutas de certificado):
+En la EC2 (usuario `ubuntu` o el que uses):
+
+```bash
+sudo mkdir -p /opt/intimo
+sudo chown -R "$USER:$USER" /opt/intimo
+cd /opt/intimo
+
+# Primera vez
+git clone git@github.com:VicCastillo23/IntimoWebsite.git
+
+# Actualizaciones
+cd /opt/intimo/IntimoWebsite && git pull
+```
+
+La raíz del sitio para Nginx será:
+
+**`root /opt/intimo/IntimoWebsite;`**
+
+(Ahí deben quedar `index.html`, `css/`, `js/`, `images/`, `privacidad.html`, etc.)
+
+## 2. Nginx (misma máquina que facturación / API)
+
+Añade un `server` para `cafeintimo.mx` y `www.cafeintimo.mx` (ajusta rutas de certificado tras `certbot`):
 
 ```nginx
 server {
     listen 443 ssl http2;
     server_name cafeintimo.mx www.cafeintimo.mx;
-    root /var/www/cafeintimo-site;
+    root /opt/intimo/IntimoWebsite;
     index index.html;
 
     ssl_certificate     /etc/letsencrypt/live/cafeintimo.mx/fullchain.pem;
@@ -35,15 +46,46 @@ server {
 }
 ```
 
-## Opción B — S3 + CloudFront
+TLS (ejemplo):
 
-1. Crea un bucket S3 (p. ej. `cafeintimo-site-prod`), desactiva listados públicos y usa **Origen de acceso de OAI/OAC** desde CloudFront.
-2. Sube los archivos (`aws s3 sync . s3://bucket/ --delete` desde la carpeta del sitio).
-3. Crea distribución CloudFront con dominio alternativo (ACM en **us-east-1** para certificado wildcard).
-4. En Route 53, alias A/AAAA hacia CloudFront.
+```bash
+sudo certbot certonly --nginx -d cafeintimo.mx -d www.cafeintimo.mx
+```
+
+Luego:
+
+```bash
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+Comprueba:
+
+```bash
+curl -sI https://cafeintimo.mx/privacidad.html
+```
+
+## 3. DNS (IONOS u otro proveedor)
+
+En la **zona DNS** del dominio (no uses solo “redireccionar dominio” si quieres que el sitio se sirva en `cafeintimo.mx`):
+
+- **`@`** → registro **A** a la **Elastic IP** de la EC2.
+- **`www`** → **A** a la misma IP, o **CNAME** según permita el panel.
+
+## 4. Despliegue desde tu Mac (opcional)
+
+Si prefieres empujar archivos sin entrar al servidor:
+
+```bash
+rsync -avz --delete --exclude '.git' ./IntimoCafeSite/ ubuntu@TU_IP:/opt/intimo/IntimoWebsite/
+```
+
+(Usa la ruta local de tu clon del repo `IntimoWebsite`.)
+
+## Opción alternativa — S3 + CloudFront
+
+Si más adelante quieres CDN sin tocar la EC2, ver flujo estándar S3 + CloudFront + ACM en `us-east-1`; la DNS apuntaría a CloudFront en lugar de la IP de la EC2.
 
 ## Después de publicar
 
 - Sustituye los textos **Sustituir** en `privacidad.html`.
 - Actualiza la fecha `<time datetime="...">` cuando cambies el aviso.
-- Opcional: enlaza `https://tudominio/privacidad.html` desde apps (fidelidad, facturación) y del pie del sitio (ya enlazado desde `index.html`).
