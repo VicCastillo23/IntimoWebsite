@@ -2,7 +2,7 @@
   function applySiteConfig() {
     var cfg = window.INTIMO_CFG || {};
     var email = cfg.email || "hola@cafeintimo.mx";
-    var ig = cfg.instagramUrl || "https://www.instagram.com/intimocoffee/";
+    var ig = cfg.instagramUrl || "https://www.instagram.com/intimo.cafe/";
     var q = cfg.mapsSearchQuery || "Íntimo Coffee México";
     var mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
 
@@ -77,8 +77,11 @@
       fine.textContent = parts.length ? parts.join(" · ") + " · " + email : email;
     }
 
-    var fb = document.querySelector("[data-intimo-fb]");
-    if (fb) fb.href = cfg.facebookUrl && cfg.facebookUrl.length ? cfg.facebookUrl : "redes.html";
+    var fbHref =
+      cfg.facebookUrl && cfg.facebookUrl.length ? cfg.facebookUrl : "redes.html";
+    document.querySelectorAll("[data-intimo-fb]").forEach(function (fb) {
+      fb.href = fbHref;
+    });
   }
 
   applySiteConfig();
