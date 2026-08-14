@@ -9,13 +9,15 @@
     var wa = document.querySelector("[data-intimo-wa]");
     if (wa) {
       var wd = String(cfg.whatsappDigits || "").replace(/\D/g, "");
-      if (wd.length >= 11) wa.href = "https://wa.me/" + wd;
-      else
-        wa.href =
-          "mailto:" +
-          email +
-          "?subject=" +
-          encodeURIComponent("Contacto (WhatsApp) — web Íntimo");
+      if (wd.length >= 11) {
+        wa.href = "https://wa.me/" + wd;
+        wa.hidden = false;
+        wa.removeAttribute("aria-hidden");
+      } else {
+        wa.hidden = true;
+        wa.setAttribute("aria-hidden", "true");
+        wa.removeAttribute("href");
+      }
     }
 
     document.querySelectorAll("[data-intimo-ig]").forEach(function (el) {
