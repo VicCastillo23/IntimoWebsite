@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Carta — Íntimo Cafetería de Especialidad. Precios en vivo desde nuestro sistema." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Carta | Íntimo — Cafetería de Especialidad</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/carta-digital.css?v=2" />
+</head>
+<body class="carta-pdf-theme">
+  <a class="carta-skip" href="#contenido-carta">Saltar al menú</a>
+
+  <a href="index.html" class="carta-back" aria-label="Volver al sitio principal">← Inicio</a>
+
+  <main id="contenido-carta">
+  <!-- Portada (como el PDF) -->
+  <section class="carta-cover" aria-label="Portada">
+    <div class="carta-cover__rule carta-cover__rule--top" aria-hidden="true">
+      <span class="carta-gem"></span>
+    </div>
+
+    <div class="carta-cover__center">
+      <div class="carta-cover__logo-wrap carta-reveal">
+        <img
+          class="carta-cover__logo"
+          src="images/carta/logo-lockup.png"
+          alt="Íntimo — Cafetería de Especialidad"
+          width="480"
+          height="180"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <div class="carta-cover__info-bar carta-reveal carta-reveal--delay2" aria-label="Horarios y contacto">
+      <div class="carta-cover__info-group">
+        <span class="carta-cover__label">Horarios</span>
+        <span data-carta-hours-week></span>
+        <span class="carta-cover__sep" aria-hidden="true">·</span>
+        <span data-carta-hours-sat></span>
+      </div>
+      <span class="carta-cover__divider" aria-hidden="true"></span>
+      <div class="carta-cover__info-group">
+        <span class="carta-cover__label">Contacto</span>
+        <span>WA <span data-carta-wa-label></span></span>
+        <span class="carta-cover__sep" aria-hidden="true">·</span>
+        <span>Tel. <span data-carta-phone-label></span></span>
+      </div>
+      <span class="carta-cover__divider" aria-hidden="true"></span>
+      <div class="carta-cover__info-group carta-cover__info-group--social">
+        <span class="carta-cover__label">Siguenos</span>
+        <a data-intimo-ig href="#" rel="noopener noreferrer" target="_blank" class="carta-cover__ig"></a>
+      </div>
+    </div>
+    <p class="carta-cover__sync" id="carta-sync-meta" aria-live="polite"></p>
+  </section>
+
+  <nav class="carta-nav" id="carta-nav" aria-label="Secciones" hidden>
+    <div class="carta-nav__inner" id="carta-nav-inner"></div>
+  </nav>
+
+  <div class="carta-sheet">
+    <div id="carta-alert" class="carta-alert" role="alert" hidden></div>
+    <div id="carta-content" class="carta-content">
+      <p class="carta-loading">Preparando la carta…</p>
+    </div>
+    <p class="carta-footnote">Precios en MXN · actualización automática desde contabilidad</p>
+  </div>
+  </main>
+
+  <footer class="carta-footer">
+    <p>© <span id="year"></span> Íntimo Coffee</p>
+    <p><a href="index.html">Sitio web</a> · <a href="privacidad.html">Privacidad</a></p>
+  </footer>
+
+  <script src="js/site-config.js"></script>
+  <script src="js/carta-digital.js"></script>
+</body>
+</html>

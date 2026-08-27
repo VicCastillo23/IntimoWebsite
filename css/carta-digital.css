@@ -1,0 +1,556 @@
+/* Carta digital — réplica visual del menú impreso (negro / blanco, editorial) */
+
+:root {
+  --carta-bg: #0a0a0a;
+  --carta-fg: #f5f5f5;
+  --carta-muted: rgba(255, 255, 255, 0.62);
+  --carta-line: rgba(255, 255, 255, 0.82);
+  --carta-font: "DM Sans", system-ui, sans-serif;
+  --carta-display: "Fraunces", Georgia, serif;
+  --carta-max: 980px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.carta-pdf-theme {
+  margin: 0;
+  font-family: var(--carta-font);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--carta-fg);
+  background: var(--carta-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--carta-fg);
+  text-underline-offset: 3px;
+}
+
+.carta-skip {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+}
+
+.carta-skip:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 9999;
+  padding: 0.6rem 1rem;
+  background: var(--carta-fg);
+  color: var(--carta-bg);
+  border-radius: 6px;
+}
+
+.carta-back {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 120;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  opacity: 0.75;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.carta-back:hover {
+  opacity: 1;
+}
+
+/* ── Portada ───────────────────────────────────────────── */
+.carta-cover {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 3.5rem 0 2rem;
+  overflow: hidden;
+}
+
+.carta-cover__rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(calc(100% - 3rem), var(--carta-max));
+  margin: 0 auto 1.5rem;
+  padding: 0 1.5rem;
+  gap: 0;
+}
+
+.carta-cover__rule--top::before,
+.carta-cover__rule--top::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--carta-line);
+}
+
+.carta-gem {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--carta-fg);
+  transform: rotate(45deg);
+  margin: 0 0.75rem;
+  flex-shrink: 0;
+}
+
+.carta-cover__center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem 2.5rem;
+}
+
+.carta-cover__logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.carta-cover__logo-wrap::before {
+  content: "";
+  position: absolute;
+  width: min(100vw, 720px);
+  height: min(100vw, 720px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.12) 32%,
+    rgba(255, 255, 255, 0.04) 52%,
+    transparent 72%
+  );
+  animation: carta-logo-glow 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.carta-cover__logo {
+  position: relative;
+  z-index: 1;
+  width: min(98vw, 640px);
+  max-width: 100%;
+  filter: drop-shadow(0 0 48px rgba(255, 255, 255, 0.14));
+}
+
+.carta-cover__info-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem 1.25rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--carta-muted);
+}
+
+.carta-cover__info-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+}
+
+.carta-cover__info-group--social {
+  gap: 0.5rem;
+}
+
+.carta-cover__label {
+  color: var(--carta-fg);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.carta-cover__sep {
+  opacity: 0.45;
+}
+
+.carta-cover__divider {
+  width: 1px;
+  height: 1.1rem;
+  background: rgba(255, 255, 255, 0.22);
+  flex-shrink: 0;
+}
+
+.carta-cover__ig::after {
+  content: "@intimo.cafe";
+  font-size: 0.75rem;
+}
+
+.carta-cover__sync {
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 1rem auto 0;
+  max-width: var(--carta-max);
+  padding: 0 1.5rem;
+}
+
+/* ── Navegación ───────────────────────────────────────── */
+.carta-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.55rem 0;
+}
+
+.carta-nav__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0 1rem;
+  max-width: var(--carta-max);
+  margin: 0 auto;
+}
+
+.carta-nav__btn {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: var(--carta-fg);
+  font-family: var(--carta-font);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.carta-nav__btn:hover,
+.carta-nav__btn:focus-visible {
+  background: var(--carta-fg);
+  color: var(--carta-bg);
+}
+
+/* ── Hoja de menú ─────────────────────────────────────── */
+.carta-sheet {
+  width: min(100% - 2rem, var(--carta-max));
+  margin: 0 auto;
+  padding: 2.5rem 0 3rem;
+}
+
+.carta-alert {
+  margin-bottom: 1.5rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid #fca5a5;
+  color: #fecaca;
+  font-size: 0.9rem;
+}
+
+.carta-loading {
+  text-align: center;
+  color: var(--carta-muted);
+  padding: 3rem 1rem;
+}
+
+.carta-section {
+  margin-bottom: 3.5rem;
+  padding-bottom: 1rem;
+  animation: carta-rise 0.7s ease both;
+}
+
+.carta-section__head {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.carta-section__emblem {
+  width: 56px;
+  opacity: 0.95;
+}
+
+.carta-section__title {
+  font-family: var(--carta-display);
+  font-size: clamp(1.5rem, 4.5vw, 2.15rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.carta-rule {
+  display: flex;
+  align-items: center;
+  margin: 0.75rem 0 1.75rem;
+}
+
+.carta-rule::before,
+.carta-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--carta-line);
+}
+
+.carta-rule .carta-gem {
+  margin: 0 0.85rem;
+}
+
+.carta-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  padding-top: 1.5rem;
+}
+
+.carta-col:first-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  padding-right: 2rem;
+}
+
+.carta-col:last-child {
+  padding-left: 0.5rem;
+}
+
+.carta-block {
+  margin-bottom: 2rem;
+}
+
+.carta-block__label {
+  display: inline-block;
+  border: 1px solid var(--carta-fg);
+  padding: 0.28rem 0.65rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.carta-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carta-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.28rem 0;
+}
+
+.carta-row__main {
+  min-width: 0;
+}
+
+.carta-row__name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.35;
+}
+
+.carta-row__desc {
+  margin: 0.12rem 0 0;
+  font-size: 0.68rem;
+  color: var(--carta-muted);
+  line-height: 1.4;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.carta-row__price {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.carta-section__foot {
+  display: none;
+}
+
+.carta-section__decor {
+  display: none;
+}
+
+.carta-footnote {
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.38);
+  margin-top: 2rem;
+}
+
+.carta-footer {
+  text-align: center;
+  padding: 2rem 1rem 2.5rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carta-footer p {
+  margin: 0.25rem 0;
+}
+
+/* ── Animaciones ────────────────────────────────────────── */
+@keyframes carta-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes carta-logo-glow {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes carta-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.carta-reveal {
+  animation: carta-rise 1s ease both;
+}
+
+.carta-reveal--delay {
+  animation-delay: 0.15s;
+}
+
+.carta-reveal--delay2 {
+  animation-delay: 0.35s;
+}
+
+.carta-reveal--delay3 {
+  animation-delay: 0.55s;
+}
+
+@media (max-width: 720px) {
+  .carta-cover {
+    padding-top: 3rem;
+  }
+
+  .carta-cover__info-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+    padding: 0.65rem 1rem;
+  }
+
+  .carta-cover__divider {
+    display: none;
+  }
+
+  .carta-cover__info-group {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .carta-columns {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .carta-col:first-child {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    margin-bottom: 1.5rem;
+  }
+
+  .carta-col:last-child {
+    padding-left: 0;
+  }
+
+  .carta-section__foot,
+  .carta-section__decor {
+    display: none;
+  }
+
+  .carta-cover__logo {
+    width: min(96vw, 520px);
+  }
+
+  .carta-cover__logo-wrap::before {
+    width: min(100vw, 560px);
+    height: min(100vw, 560px);
+  }
+
+  .carta-nav__inner {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+  }
+
+  .carta-nav__inner::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
