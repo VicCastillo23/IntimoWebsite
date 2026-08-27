@@ -7,7 +7,6 @@
   var contentEl = document.getElementById("carta-content");
   var navEl = document.getElementById("carta-nav");
   var navInner = document.getElementById("carta-nav-inner");
-  var metaEl = document.getElementById("carta-sync-meta");
   var alertEl = document.getElementById("carta-alert");
 
   var lastServerVersion = null;
@@ -78,10 +77,6 @@
     }
     alertEl.hidden = false;
     alertEl.textContent = msg;
-  }
-
-  function setMeta(text) {
-    if (metaEl) metaEl.textContent = text || "";
   }
 
   function buildMenuTree(categories, products) {
@@ -297,17 +292,9 @@
       lastServerVersion = version;
       showAlert("");
       renderMenu(data);
-      setMeta(
-        "Menú actualizado " +
-          fmtSyncTime(data.syncedAt) +
-          (data.counts && data.counts.products
-            ? " · " + data.counts.products + " ítems"
-            : "")
-      );
     } catch (e) {
       var errMsg = e instanceof Error ? e.message : "Error al cargar la carta.";
       showAlert(errMsg);
-      setMeta("");
       if (!contentEl.querySelector(".carta-section")) {
         contentEl.innerHTML =
           "<p class=\"carta-loading\">Intenta recargar la página en unos momentos.</p>";

@@ -210,12 +210,7 @@ a {
 }
 
 .carta-cover__sync {
-  text-align: center;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.35);
-  margin: 1rem auto 0;
-  max-width: var(--carta-max);
-  padding: 0 1.5rem;
+  display: none;
 }
 
 /* ── Navegación ───────────────────────────────────────── */
@@ -418,6 +413,49 @@ a {
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.38);
   margin-top: 2rem;
+}
+
+.carta-legal {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.68rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.carta-legal__title {
+  margin: 0 0 0.75rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.carta-legal__list {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+}
+
+.carta-legal__list li {
+  margin-bottom: 0.45rem;
+}
+
+.carta-legal__list li:last-child {
+  margin-bottom: 0;
+}
+
+.carta-legal__list a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.carta-legal__note {
+  margin: 0.85rem 0 0;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-style: italic;
 }
 
 .carta-footer {
