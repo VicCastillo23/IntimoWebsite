@@ -213,56 +213,58 @@ a {
   display: none;
 }
 
-/* ── Sección menú (2 columnas + sugerencias a ancho completo) */
-.carta-block--photo::after {
-  content: "";
-  display: table;
-  clear: both;
+/* ── Fotos en esquina inferior derecha de cada sección ─ */
+.carta-col--rail {
+  display: flex;
+  flex-direction: column;
 }
 
-.carta-sugerencia--float {
-  width: min(44%, 156px);
-  margin: 0.1rem 0 0.65rem 0.85rem;
-  break-inside: avoid;
+.carta-col__menu {
+  flex: 0 0 auto;
 }
 
-.carta-sugerencia--float.carta-sugerencia--right {
-  float: right;
-  clear: right;
+.carta-section__fotos {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-content: end;
 }
 
-.carta-sugerencia--float.carta-sugerencia--left {
-  float: left;
-  margin: 0.1rem 0.85rem 0.65rem 0;
-  clear: left;
+.carta-section__fotos:has(.carta-foto:only-child) {
+  grid-template-columns: 1fr;
+  max-width: 168px;
+  margin-left: auto;
 }
 
-.carta-sugerencia__frame {
+.carta-foto {
+  margin: 0;
+}
+
+.carta-foto__frame {
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #111;
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.carta-sugerencia__frame img {
+.carta-foto__frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.carta-sugerencia__caption {
-  margin: 0.38rem 0 0;
-  font-size: 0.58rem;
+.carta-foto__caption {
+  margin: 0.35rem 0 0;
+  font-size: 0.56rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   line-height: 1.35;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.carta-row--featured .carta-row__name {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.68);
+  text-align: center;
 }
 
 /* ── Navegación ───────────────────────────────────────── */
@@ -577,16 +579,16 @@ a {
     padding-top: 3rem;
   }
 
-  .carta-sugerencia--float {
-    float: none;
-    width: min(68%, 220px);
-    margin: 0 auto 0.85rem;
+  .carta-section__fotos {
+    margin-top: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 100%;
   }
 
-  .carta-sugerencia--float.carta-sugerencia--left,
-  .carta-sugerencia--float.carta-sugerencia--right {
-    float: none;
-    clear: none;
+  .carta-section__fotos:has(.carta-foto:only-child) {
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .carta-cover__info-bar {

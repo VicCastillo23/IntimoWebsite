@@ -128,11 +128,8 @@
 
   function renderRow(product) {
     var desc = product.description ? String(product.description).trim() : "";
-    var featured = fotosById[product.id] ? " carta-row--featured" : "";
     return (
-      "<li class=\"carta-row" +
-      featured +
-      "\">" +
+      "<li class=\"carta-row\">" +
       "<div class=\"carta-row__main\">" +
       "<div class=\"carta-row__name\">" +
       escapeHtml(product.name) +
@@ -146,44 +143,30 @@
     );
   }
 
-  function renderSugerencia(foto, product, side) {
-    var sideClass = side === "left" ? " carta-sugerencia--left" : " carta-sugerencia--right";
+  function renderFoto(foto, product) {
     return (
-      "<figure class=\"carta-sugerencia carta-sugerencia--float" +
-      sideClass +
-      "\" aria-label=\"" +
+      "<figure class=\"carta-foto\" aria-label=\"" +
       escapeHtml(product.name) +
       "\">" +
-      "<div class=\"carta-sugerencia__frame\">" +
+      "<div class=\"carta-foto__frame\">" +
       "<img src=\"" +
       escapeHtml(foto.src) +
       "\" alt=\"\" loading=\"lazy\" decoding=\"async\" />" +
       "</div>" +
-      "<figcaption class=\"carta-sugerencia__caption\">" +
+      "<figcaption class=\"carta-foto__caption\">" +
       escapeHtml(product.name) +
       "</figcaption>" +
       "</figure>"
     );
   }
 
-  function renderBlock(title, products, blockIndex) {
+  function renderBlock(title, products) {
     if (!products.length) return "";
-    var photoProducts = products.filter(function (p) {
-      return fotosById[p.id];
-    });
-    var photosHtml = photoProducts
-      .map(function (p, i) {
-        return renderSugerencia(fotosById[p.id], p, (blockIndex + i) % 2 === 0 ? "right" : "left");
-      })
-      .join("");
     return (
-      "<div class=\"carta-block" +
-      (photosHtml ? " carta-block--photo" : "") +
-      "\">" +
+      "<div class=\"carta-block\">" +
       "<div class=\"carta-block__label\">" +
       escapeHtml(title) +
       "</div>" +
-      photosHtml +
       "<ul class=\"carta-rows\">" +
       products.map(renderRow).join("") +
       "</ul>" +
@@ -191,15 +174,41 @@
     );
   }
 
-  function columnHtml(groups, blockOffset) {
-    var idx = blockOffset || 0;
+  function columnHtml(groups) {
     return groups
       .map(function (g) {
-        var html = renderBlock(g.name, g.products, idx);
-        idx += 1;
-        return html;
+        return renderBlock(g.name, g.products);
       })
       .join("");
+  }
+
+  function collectSectionFotos(groups) {
+    var seen = new Set();
+    var fotos = [];
+    groups.forEach(function (group) {
+      group.products.forEach(function (product) {
+        var foto = fotosById[product.id];
+        if (foto && !seen.has(product.id)) {
+          seen.add(product.id);
+          fotos.push({ foto: foto, product: product });
+        }
+      });
+    });
+    return fotos;
+  }
+
+  function renderSectionFotos(groups) {
+    var items = collectSectionFotos(groups);
+    if (!items.length) return "";
+    return (
+      "<aside class=\"carta-section__fotos\" aria-label=\"Fotografías referenciales\">" +
+      items
+        .map(function (item) {
+          return renderFoto(item.foto, item.product);
+        })
+        .join("") +
+      "</aside>"
+    );
   }
 
   function splitGroups(section) {
@@ -226,6 +235,7 @@
     var mid = Math.ceil(groups.length / 2);
     var leftGroups = groups.slice(0, mid);
     var rightGroups = groups.slice(mid);
+    var fotosHtml = renderSectionFotos(groups);
 
     return (
       "<section class=\"carta-section\" id=\"" +
@@ -244,10 +254,13 @@
       "<div class=\"carta-rule\" aria-hidden=\"true\"><span class=\"carta-gem\"></span></div>" +
       "<div class=\"carta-columns\">" +
       "<div class=\"carta-col\">" +
-      columnHtml(leftGroups, 0) +
+      columnHtml(leftGroups) +
       "</div>" +
-      "<div class=\"carta-col\">" +
-      columnHtml(rightGroups, leftGroups.length) +
+      "<div class=\"carta-col carta-col--rail\">" +
+      "<div class=\"carta-col__menu\">" +
+      columnHtml(rightGroups) +
+      "</div>" +
+      fotosHtml +
       "</div>" +
       "</div>" +
       "</section>"
