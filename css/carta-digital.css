@@ -214,30 +214,34 @@ a {
 }
 
 /* ── Sección menú (2 columnas + sugerencias a ancho completo) */
-.carta-section__flow {
-  column-count: 2;
-  column-gap: 2.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
-  padding-top: 1.5rem;
+.carta-block--photo::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.carta-section__flow > .carta-block {
+.carta-sugerencia--float {
+  width: min(44%, 156px);
+  margin: 0.1rem 0 0.65rem 0.85rem;
   break-inside: avoid;
-  margin-bottom: 2rem;
 }
 
-.carta-section__flow > .carta-sugerencia {
-  column-span: all;
-  break-inside: avoid;
-  margin: 0.25rem 0 1.75rem;
+.carta-sugerencia--float.carta-sugerencia--right {
+  float: right;
+  clear: right;
+}
+
+.carta-sugerencia--float.carta-sugerencia--left {
+  float: left;
+  margin: 0.1rem 0.85rem 0.65rem 0;
+  clear: left;
 }
 
 .carta-sugerencia__frame {
-  aspect-ratio: 21 / 9;
-  max-height: 220px;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #111;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .carta-sugerencia__frame img {
@@ -248,36 +252,17 @@ a {
 }
 
 .carta-sugerencia__caption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: center;
-  gap: 0.35rem 0.75rem;
-  margin: 0.65rem 0 0;
-  text-align: center;
-}
-
-.carta-sugerencia__tag {
+  margin: 0.38rem 0 0;
   font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  padding: 0.15rem 0.45rem;
-}
-
-.carta-sugerencia__name {
-  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.72);
 }
 
-.carta-sugerencia__price {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.78);
+.carta-row--featured .carta-row__name {
+  color: #fff;
 }
 
 /* ── Navegación ───────────────────────────────────────── */
@@ -397,6 +382,15 @@ a {
   gap: 0 2.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.35);
   padding-top: 1.5rem;
+}
+
+.carta-col:first-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  padding-right: 2rem;
+}
+
+.carta-col:last-child {
+  padding-left: 0.5rem;
 }
 
 .carta-block {
@@ -583,13 +577,16 @@ a {
     padding-top: 3rem;
   }
 
-  .carta-section__flow {
-    column-count: 1;
+  .carta-sugerencia--float {
+    float: none;
+    width: min(68%, 220px);
+    margin: 0 auto 0.85rem;
   }
 
-  .carta-sugerencia__frame {
-    aspect-ratio: 4 / 3;
-    max-height: none;
+  .carta-sugerencia--float.carta-sugerencia--left,
+  .carta-sugerencia--float.carta-sugerencia--right {
+    float: none;
+    clear: none;
   }
 
   .carta-cover__info-bar {

@@ -128,8 +128,11 @@
 
   function renderRow(product) {
     var desc = product.description ? String(product.description).trim() : "";
+    var featured = fotosById[product.id] ? " carta-row--featured" : "";
     return (
-      "<li class=\"carta-row\">" +
+      "<li class=\"carta-row" +
+      featured +
+      "\">" +
       "<div class=\"carta-row__main\">" +
       "<div class=\"carta-row__name\">" +
       escapeHtml(product.name) +
@@ -143,10 +146,13 @@
     );
   }
 
-  function renderSugerencia(foto, product) {
+  function renderSugerencia(foto, product, side) {
+    var sideClass = side === "left" ? " carta-sugerencia--left" : " carta-sugerencia--right";
     return (
-      "<figure class=\"carta-sugerencia\" aria-label=\"Sugerencia: " +
-      escapeHtml(foto.name) +
+      "<figure class=\"carta-sugerencia carta-sugerencia--float" +
+      sideClass +
+      "\" aria-label=\"" +
+      escapeHtml(product.name) +
       "\">" +
       "<div class=\"carta-sugerencia__frame\">" +
       "<img src=\"" +
@@ -154,30 +160,46 @@
       "\" alt=\"\" loading=\"lazy\" decoding=\"async\" />" +
       "</div>" +
       "<figcaption class=\"carta-sugerencia__caption\">" +
-      "<span class=\"carta-sugerencia__tag\">Sugerencia</span>" +
-      "<span class=\"carta-sugerencia__name\">" +
       escapeHtml(product.name) +
-      "</span>" +
-      "<span class=\"carta-sugerencia__price\">" +
-      escapeHtml(fmtPrice(product.price)) +
-      "</span>" +
       "</figcaption>" +
       "</figure>"
     );
   }
 
-  function renderBlock(title, products) {
+  function renderBlock(title, products, blockIndex) {
     if (!products.length) return "";
+    var photoProducts = products.filter(function (p) {
+      return fotosById[p.id];
+    });
+    var photosHtml = photoProducts
+      .map(function (p, i) {
+        return renderSugerencia(fotosById[p.id], p, (blockIndex + i) % 2 === 0 ? "right" : "left");
+      })
+      .join("");
     return (
-      "<div class=\"carta-block\">" +
+      "<div class=\"carta-block" +
+      (photosHtml ? " carta-block--photo" : "") +
+      "\">" +
       "<div class=\"carta-block__label\">" +
       escapeHtml(title) +
       "</div>" +
+      photosHtml +
       "<ul class=\"carta-rows\">" +
       products.map(renderRow).join("") +
       "</ul>" +
       "</div>"
     );
+  }
+
+  function columnHtml(groups, blockOffset) {
+    var idx = blockOffset || 0;
+    return groups
+      .map(function (g) {
+        var html = renderBlock(g.name, g.products, idx);
+        idx += 1;
+        return html;
+      })
+      .join("");
   }
 
   function splitGroups(section) {
@@ -201,15 +223,9 @@
     if (!groups.length) return "";
 
     var id = "carta-sec-" + escapeHtml(section.id);
-    var cells = [];
-
-    groups.forEach(function (group) {
-      cells.push(renderBlock(group.name, group.products));
-      group.products.forEach(function (product) {
-        var foto = fotosById[product.id];
-        if (foto) cells.push(renderSugerencia(foto, product));
-      });
-    });
+    var mid = Math.ceil(groups.length / 2);
+    var leftGroups = groups.slice(0, mid);
+    var rightGroups = groups.slice(mid);
 
     return (
       "<section class=\"carta-section\" id=\"" +
@@ -226,8 +242,13 @@
       "</h2>" +
       "</header>" +
       "<div class=\"carta-rule\" aria-hidden=\"true\"><span class=\"carta-gem\"></span></div>" +
-      "<div class=\"carta-section__flow\">" +
-      cells.join("") +
+      "<div class=\"carta-columns\">" +
+      "<div class=\"carta-col\">" +
+      columnHtml(leftGroups, 0) +
+      "</div>" +
+      "<div class=\"carta-col\">" +
+      columnHtml(rightGroups, leftGroups.length) +
+      "</div>" +
       "</div>" +
       "</section>"
     );
