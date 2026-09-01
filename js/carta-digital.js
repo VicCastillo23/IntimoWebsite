@@ -11,6 +11,7 @@
 
   var lastServerVersion = null;
   var pollTimer = null;
+  var fotosById = window.CARTA_FOTOS_BY_ID || {};
 
   function escapeHtml(s) {
     return String(s)
@@ -142,6 +143,29 @@
     );
   }
 
+  function renderSugerencia(foto, product) {
+    return (
+      "<figure class=\"carta-sugerencia\" aria-label=\"Sugerencia: " +
+      escapeHtml(foto.name) +
+      "\">" +
+      "<div class=\"carta-sugerencia__frame\">" +
+      "<img src=\"" +
+      escapeHtml(foto.src) +
+      "\" alt=\"\" loading=\"lazy\" decoding=\"async\" />" +
+      "</div>" +
+      "<figcaption class=\"carta-sugerencia__caption\">" +
+      "<span class=\"carta-sugerencia__tag\">Sugerencia</span>" +
+      "<span class=\"carta-sugerencia__name\">" +
+      escapeHtml(product.name) +
+      "</span>" +
+      "<span class=\"carta-sugerencia__price\">" +
+      escapeHtml(fmtPrice(product.price)) +
+      "</span>" +
+      "</figcaption>" +
+      "</figure>"
+    );
+  }
+
   function renderBlock(title, products) {
     if (!products.length) return "";
     return (
@@ -154,14 +178,6 @@
       "</ul>" +
       "</div>"
     );
-  }
-
-  function columnHtml(groups) {
-    return groups
-      .map(function (g) {
-        return renderBlock(g.name, g.products);
-      })
-      .join("");
   }
 
   function splitGroups(section) {
@@ -185,9 +201,15 @@
     if (!groups.length) return "";
 
     var id = "carta-sec-" + escapeHtml(section.id);
-    var mid = Math.ceil(groups.length / 2);
-    var leftGroups = groups.slice(0, mid);
-    var rightGroups = groups.slice(mid);
+    var cells = [];
+
+    groups.forEach(function (group) {
+      cells.push(renderBlock(group.name, group.products));
+      group.products.forEach(function (product) {
+        var foto = fotosById[product.id];
+        if (foto) cells.push(renderSugerencia(foto, product));
+      });
+    });
 
     return (
       "<section class=\"carta-section\" id=\"" +
@@ -204,13 +226,8 @@
       "</h2>" +
       "</header>" +
       "<div class=\"carta-rule\" aria-hidden=\"true\"><span class=\"carta-gem\"></span></div>" +
-      "<div class=\"carta-columns\">" +
-      "<div class=\"carta-col\">" +
-      columnHtml(leftGroups) +
-      "</div>" +
-      "<div class=\"carta-col\">" +
-      columnHtml(rightGroups) +
-      "</div>" +
+      "<div class=\"carta-section__flow\">" +
+      cells.join("") +
       "</div>" +
       "</section>"
     );
