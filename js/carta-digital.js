@@ -11,7 +11,6 @@
 
   var lastServerVersion = null;
   var pollTimer = null;
-  var fotosById = window.CARTA_FOTOS_BY_ID || {};
 
   function escapeHtml(s) {
     return String(s)
@@ -143,23 +142,6 @@
     );
   }
 
-  function renderFoto(foto, product) {
-    return (
-      "<figure class=\"carta-foto\" aria-label=\"" +
-      escapeHtml(product.name) +
-      "\">" +
-      "<div class=\"carta-foto__frame\">" +
-      "<img src=\"" +
-      escapeHtml(foto.src) +
-      "\" alt=\"\" loading=\"lazy\" decoding=\"async\" />" +
-      "</div>" +
-      "<figcaption class=\"carta-foto__caption\">" +
-      escapeHtml(product.name) +
-      "</figcaption>" +
-      "</figure>"
-    );
-  }
-
   function renderBlock(title, products) {
     if (!products.length) return "";
     return (
@@ -180,35 +162,6 @@
         return renderBlock(g.name, g.products);
       })
       .join("");
-  }
-
-  function collectSectionFotos(groups) {
-    var seen = new Set();
-    var fotos = [];
-    groups.forEach(function (group) {
-      group.products.forEach(function (product) {
-        var foto = fotosById[product.id];
-        if (foto && !seen.has(product.id)) {
-          seen.add(product.id);
-          fotos.push({ foto: foto, product: product });
-        }
-      });
-    });
-    return fotos;
-  }
-
-  function renderSectionFotos(groups) {
-    var items = collectSectionFotos(groups);
-    if (!items.length) return "";
-    return (
-      "<aside class=\"carta-section__fotos\" aria-label=\"Fotografías referenciales\">" +
-      items
-        .map(function (item) {
-          return renderFoto(item.foto, item.product);
-        })
-        .join("") +
-      "</aside>"
-    );
   }
 
   function splitGroups(section) {
@@ -235,7 +188,6 @@
     var mid = Math.ceil(groups.length / 2);
     var leftGroups = groups.slice(0, mid);
     var rightGroups = groups.slice(mid);
-    var fotosHtml = renderSectionFotos(groups);
 
     return (
       "<section class=\"carta-section\" id=\"" +
@@ -256,11 +208,8 @@
       "<div class=\"carta-col\">" +
       columnHtml(leftGroups) +
       "</div>" +
-      "<div class=\"carta-col carta-col--rail\">" +
-      "<div class=\"carta-col__menu\">" +
+      "<div class=\"carta-col\">" +
       columnHtml(rightGroups) +
-      "</div>" +
-      fotosHtml +
       "</div>" +
       "</div>" +
       "</section>"

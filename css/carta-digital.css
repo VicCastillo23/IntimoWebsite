@@ -213,60 +213,6 @@ a {
   display: none;
 }
 
-/* ── Fotos en esquina inferior derecha de cada sección ─ */
-.carta-col--rail {
-  display: flex;
-  flex-direction: column;
-}
-
-.carta-col__menu {
-  flex: 0 0 auto;
-}
-
-.carta-section__fotos {
-  margin-top: auto;
-  padding-top: 1.25rem;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-  align-content: end;
-}
-
-.carta-section__fotos:has(.carta-foto:only-child) {
-  grid-template-columns: 1fr;
-  max-width: 168px;
-  margin-left: auto;
-}
-
-.carta-foto {
-  margin: 0;
-}
-
-.carta-foto__frame {
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: #111;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.carta-foto__frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.carta-foto__caption {
-  margin: 0.35rem 0 0;
-  font-size: 0.56rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  line-height: 1.35;
-  color: rgba(255, 255, 255, 0.68);
-  text-align: center;
-}
-
 /* ── Navegación ───────────────────────────────────────── */
 .carta-nav {
   position: sticky;
@@ -577,18 +523,6 @@ a {
 @media (max-width: 720px) {
   .carta-cover {
     padding-top: 3rem;
-  }
-
-  .carta-section__fotos {
-    margin-top: 1.5rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 100%;
-  }
-
-  .carta-section__fotos:has(.carta-foto:only-child) {
-    max-width: 220px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .carta-cover__info-bar {
