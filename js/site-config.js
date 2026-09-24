@@ -13,8 +13,8 @@ window.INTIMO_CFG = {
   addressLine1: "Av Hidalgo 2104, Fátima",
   addressLine2: "90357 Cdad. de Apizaco, Tlax.",
   mapsSearchQuery: "Av Hidalgo 2104 Fátima Apizaco Tlaxcala",
-  /** API pública de carta (contabilidad) — precios en vivo */
-  menuApiUrl: "https://contabilidad.cafeintimo.mx/api/public/menu",
+  /** API pública de carta (Administración General) — precios en vivo */
+  menuApiUrl: "https://administracion.cafeintimo.mx/api/public/menu",
   menuHoursWeek: "Lun. - Vier. : 9:00 a 21:30 hrs.",
   menuHoursSat: "Sábado: 9:00 a 21:30 hrs.",
   menuWhatsappLabel: "241-108-7855",

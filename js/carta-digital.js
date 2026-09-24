@@ -2,7 +2,7 @@
   var POLL_MS = 60_000;
   var cfg = window.INTIMO_CFG || {};
   var apiUrl =
-    cfg.menuApiUrl || "https://contabilidad.cafeintimo.mx/api/public/menu";
+    cfg.menuApiUrl || "https://administracion.cafeintimo.mx/api/public/menu";
 
   var contentEl = document.getElementById("carta-content");
   var navEl = document.getElementById("carta-nav");
